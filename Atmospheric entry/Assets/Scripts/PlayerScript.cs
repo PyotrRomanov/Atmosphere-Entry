@@ -14,14 +14,22 @@ public class PlayerScript : InteractiveObject {
     public bool startMovement = false;
     Vector2 turnStartLoc;
     public int teamID;
-	
-	// Update is called once per frame
-	void Update () {
-        if (GetComponent<TurnInfo>().turnStart)
+
+    public int speed;
+    public int turnGauge;
+    public bool turnEnd = false;
+    public bool inTurn = false;
+    public bool turnStart = false;
+
+    // Update is called once per frame
+    void Update () {
+        
+
+        if (turnStart)
         {
             menuOpen = true;
-            GetComponent<TurnInfo>().inTurn = true;
-            GetComponent<TurnInfo>().turnStart = false;
+            inTurn = true;
+            turnStart = false;
             localProjection = Instantiate(projection);
             localProjection.GetComponent<ProjectionScript>().dest = loc + dir;
             localProjection.GetComponent<Transform>().position = GetComponent<Transform>().position;
@@ -35,9 +43,9 @@ public class PlayerScript : InteractiveObject {
 
 
         //Endturn hotkey code
-        if (Input.GetKeyDown("space") && GetComponent<TurnInfo>().inTurn) {
+        if (Input.GetKeyDown("space") && inTurn) {
             dest = localProjection.GetComponent<ProjectionScript>().dest;
-            GetComponent<TurnInfo>().turnGauge = 0;
+            turnGauge = 0;
             loc = localProjection.GetComponent<ProjectionScript>().dest;
             dir = localProjection.GetComponent<ProjectionScript>().dest - turnStartLoc;
             GameObject[] moveButtons = GameObject.FindGameObjectsWithTag("MoveButton");
@@ -46,7 +54,7 @@ public class PlayerScript : InteractiveObject {
             }
             Destroy(localProjection);
             CloseMenu();
-            GetComponent<TurnInfo>().inTurn = false;
+            inTurn = false;
             
         }
         
@@ -60,7 +68,7 @@ public class PlayerScript : InteractiveObject {
             localMenu.GetComponent<Transform>().position = loc + new Vector2(2.5f,-1.5f);
             menuOpen = false;
         }
-        if (GetComponent<TurnInfo>().inTurn && Input.GetMouseButtonDown(1)) {
+        if (inTurn && Input.GetMouseButtonDown(1)) {
             GameObject[] moveButtons = GameObject.FindGameObjectsWithTag("MoveButton");
             foreach (GameObject m in moveButtons)
             {
@@ -97,6 +105,11 @@ public class PlayerScript : InteractiveObject {
             startMovement = false;
         }
         
+    }
+
+    public void applySpeed()
+    {
+        turnGauge += speed;
     }
 
 
