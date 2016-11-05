@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ModuleCollection>
+	<Modules>
+		<Module>
+      <name>a</name>
+			<HP>50</HP>
+			<Active>true</Active>
+		</Module>
+		<Module>
+      <name>b</name>
+			<HP>20</HP>
+			<Active>false</Active>
+		</Module>
+	</Modules>
+</ModuleCollection>

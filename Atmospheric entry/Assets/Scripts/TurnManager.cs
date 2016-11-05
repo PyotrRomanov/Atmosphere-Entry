@@ -3,11 +3,11 @@ using System.Collections;
 using System.Collections.Generic;
 
 public class TurnManager : MonoBehaviour {
-    GameObject[] objects;
+    public List<GameObject> objects;
     Queue<GameObject> nextTurns = new Queue<GameObject>();
     // Use this for initialization
     void Start () {
-        objects = GameObject.FindGameObjectsWithTag("TakesTurns");
+        objects.AddRange(GameObject.FindGameObjectsWithTag("TakesTurns"));
 
     }
 	
@@ -23,8 +23,8 @@ public class TurnManager : MonoBehaviour {
                 {
                     foreach (GameObject p in objects)
                     {
-                        p.GetComponent<PlayerScript>().applySpeed();
-                        if (p.GetComponent<PlayerScript>().turnGauge > 100)
+                        p.GetComponent<TurnInfo>().applySpeed();
+                        if (p.GetComponent<TurnInfo>().turnGauge > 100)
                         {
                             //p.GetComponent<PlayerScript>().turnGauge = 0;
                             nextTurns.Enqueue(p);
@@ -35,14 +35,14 @@ public class TurnManager : MonoBehaviour {
         }
         else {
             GameObject curPlayer = nextTurns.Dequeue();
-            curPlayer.GetComponent<PlayerScript>().turnStart = true;
+            curPlayer.GetComponent<TurnInfo>().turnStart = true;
         }
         
 	}
 
     bool checkTurns() {
         foreach (GameObject p in objects) {
-            if (p.GetComponent<PlayerScript>().inTurn) {
+            if (p.GetComponent<TurnInfo>().inTurn) {
                 return false;
             }
         }
@@ -51,7 +51,7 @@ public class TurnManager : MonoBehaviour {
 
     bool checkGauges() {
         foreach (GameObject p in objects) {
-            if (p.GetComponent<PlayerScript>().turnGauge > 100) {
+            if (p.GetComponent<TurnInfo>().turnGauge > 100) {
                 return false;
             }
         }

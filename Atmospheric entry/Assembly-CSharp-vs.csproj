@@ -46,15 +46,23 @@
 	</Reference>
   </ItemGroup>
   <ItemGroup>
+     <Compile Include="Assets\Scripts\GlobalManager.cs" />
      <Compile Include="Assets\Scripts\InteractiveObject.cs" />
-     <Compile Include="Assets\Scripts\MenuButtonScript.cs" />
-     <Compile Include="Assets\Scripts\MenuScript.cs" />
      <Compile Include="Assets\Scripts\MissileScript.cs" />
-     <Compile Include="Assets\Scripts\MoveButtonScript.cs" />
-     <Compile Include="Assets\Scripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Equipment\Module.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Equipment\ModuleRoot.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Menu\MenuButtonScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Menu\MenuMoveButtonScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Menu\MenuScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Menu\MenuWeaponButtonScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\Menu\MoveButtonScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\PlayerScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\StatScript.cs" />
+     <Compile Include="Assets\Scripts\PlayerScripts\TurnInfo.cs" />
      <Compile Include="Assets\Scripts\ProjectionScript.cs" />
-     <Compile Include="Assets\Scripts\TurnInfo.cs" />
      <Compile Include="Assets\Scripts\TurnManager.cs" />
+     <None Include="Assets\Modules\FrontMissile.txt" />
+     <None Include="Assets\Modules\head.xml" />
  <Reference Include="UnityEngine.UI">
  <HintPath>F:/Programming/UnityTemp/Editor/Data/UnityExtensions/Unity/GUISystem/UnityEngine.UI.dll</HintPath>
  </Reference>

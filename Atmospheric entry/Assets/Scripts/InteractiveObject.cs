@@ -5,10 +5,15 @@ public class InteractiveObject : MonoBehaviour {
     public Vector2 dest;
     public Vector2 dir;
     public Vector2 loc;
+    protected Vector2 turnStartLoc;
+    public int speed;
+    public GameObject projection;
+    protected GameObject localProjection;
     // Use this for initialization
     void Start () {
         GetComponentInParent<Transform>().position = loc;
         gameObject.AddComponent<TurnInfo>();
+        GetComponent<TurnInfo>().speed = speed;
 	}
 	
 	// Update is called once per frame
@@ -25,5 +30,9 @@ public class InteractiveObject : MonoBehaviour {
         }
     }
 
+    protected void RemoveFromGame() {
+        GameObject turnManager = GameObject.FindGameObjectWithTag("GlobalManager");
+        turnManager.GetComponent<TurnManager>().objects.Remove(gameObject);
+    }
     
 }
